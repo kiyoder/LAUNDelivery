@@ -12,6 +12,9 @@
         android:theme="@style/Theme.LAUNDelivery"
         tools:targetApi="31">
         <activity
+            android:name=".Inventory"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
