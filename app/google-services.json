@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "224221283123",
+    "project_id": "dblaundelivery",
+    "storage_bucket": "dblaundelivery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224221283123:android:ee4b2df75e6d70754fb446",
+        "android_client_info": {
+          "package_name": "com.example.laundelivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKobvuQV6vFph3LJLBKZ_6L8ygsHz-MlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
