@@ -11,6 +11,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonLogout;
+
+    Button buttonInventory;
     TextView textViewEmail;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         textViewEmail = findViewById(R.id.textViewEmail);
         user = mAuth.getCurrentUser();
 
+        buttonInventory = findViewById(R.id.buttonInventory);
+
         if(user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
@@ -38,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        buttonInventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Inventory.class);
                 startActivity(intent);
                 finish();
             }
