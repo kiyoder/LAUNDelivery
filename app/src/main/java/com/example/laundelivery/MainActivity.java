@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     Button buttonLogout;
 
-    Button buttonInventory;
+    Button buttonInventory, buttonLaundry;
     TextView textViewEmail;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         buttonInventory = findViewById(R.id.buttonInventory);
+
+        buttonLaundry = findViewById(R.id.btnLaundry);
 
         if(user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -51,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Inventory.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        buttonLaundry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LaundryForm.class);
                 startActivity(intent);
                 finish();
             }
