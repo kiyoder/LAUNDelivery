@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         textViewEmail = findViewById(R.id.textViewEmail);
         user = mAuth.getCurrentUser();
 
-        buttonInventory = findViewById(R.id.buttonInventory);
+        buttonInventory = findViewById(R.id.btnMyForms);
 
         buttonLaundry = findViewById(R.id.btnLaundry);
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         buttonInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Inventory.class);
+                Intent intent = new Intent(getApplicationContext(), LaundryList.class);
                 startActivity(intent);
                 finish();
             }

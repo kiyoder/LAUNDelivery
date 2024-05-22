@@ -27,10 +27,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonInventory"
+        android:id="@+id/btnMyForms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inventory"
+        android:text="My Forms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogout" />
@@ -42,6 +42,6 @@
         android:text="Laundry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonInventory" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMyForms" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
