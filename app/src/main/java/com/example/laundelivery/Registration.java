@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,10 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Registration extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword, editTextConfirmPassword;
-    ProgressBar progressBar;
     Button buttonRegister;
     FirebaseAuth mAuth;
     TextView loginNow;
+    LinearProgressIndicator progressBar;
 
     @Override
     public void onStart() {
@@ -45,8 +46,8 @@ public class Registration extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
         buttonRegister = findViewById(R.id.buttonRegister);
-        progressBar = findViewById(R.id.progressBar);
         loginNow = findViewById(R.id.loginNow);
+        progressBar = findViewById(R.id.progressBar);
 
         loginNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,6 @@ public class Registration extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
                 String email, password, confirmPassword;
 
                 email = String.valueOf(editTextEmail.getText());
@@ -76,6 +76,14 @@ public class Registration extends AppCompatActivity {
                     Toast.makeText(Registration.this, "Password does not match, are you fo real?!?!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if(password.length() < 6) {
+                    Toast.makeText(Registration.this, "Password too short!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                progressBar.setIndeterminate(true);
+                progressBar.setVisibility(View.VISIBLE);
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

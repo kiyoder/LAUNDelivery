@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int SplashScreen = 5000;
+    private static int SplashScreen = 2500;
 
     // Variables for animation
     Animation topAnim;
