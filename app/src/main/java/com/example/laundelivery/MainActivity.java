@@ -5,15 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonLogout;
 
-    Button buttonInventory, buttonLaundry;
+    ImageButton imgbtnInventory, imgbtnLaundry, imgbtnLogout;
+
+
     TextView textViewEmail;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -25,13 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        buttonLogout = findViewById(R.id.buttonLogout);
+
         textViewEmail = findViewById(R.id.textViewEmail);
         user = mAuth.getCurrentUser();
 
-        buttonInventory = findViewById(R.id.btnMyForms);
 
-        buttonLaundry = findViewById(R.id.btnLaundry);
+        imgbtnInventory = findViewById(R.id.imgbtnOrders);
+        imgbtnLaundry = findViewById(R.id.imgbtnLaundry);
+        imgbtnLogout = findViewById(R.id.imgbtnLogout);
+
+
 
         if(user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             textViewEmail.setText(user.getEmail());
         }
 
-        buttonLogout.setOnClickListener(new View.OnClickListener() {
+        imgbtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonInventory.setOnClickListener(new View.OnClickListener() {
+        imgbtnInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LaundryList.class);
@@ -60,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonLaundry.setOnClickListener(new View.OnClickListener() {
+        imgbtnLaundry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LaundryForm.class);
