@@ -90,7 +90,6 @@ public class LaundryForm extends AppCompatActivity {
 
     private void submitLaundryForm() {
         if (currentUser != null) {
-
             if (txtDatePickup == null || txtDatePickup.getText().toString().trim().isEmpty()) {
                 Toast.makeText(LaundryForm.this, "Please provide pick up date.", Toast.LENGTH_SHORT).show();
                 return;
@@ -141,6 +140,27 @@ public class LaundryForm extends AppCompatActivity {
             laundryData.put("timePickUp", timePickUp);
             laundryData.put("fabricSoftener", fabricSoftener);
 
+            float totalPrice = 0;
+            if (service.equals("Wash + Fold")) {
+                totalPrice += 200;
+            } else if (service.equals("Wash + Press")) {
+                totalPrice += 300;
+            } else if (service.equals("Dry Cleaning")) {
+                totalPrice += 100;
+            }
+
+            if (detergent.equals("Premium (+P50)")) {
+                totalPrice += 50;
+            } else if (detergent.equals("Deluxe (+P100)")) {
+                totalPrice += 100;
+            }
+
+            if (fabricSoftener) {
+                totalPrice += 25.5;
+            }
+
+            laundryData.put("total", totalPrice);
+
             db.collection("users").document(uid).collection("laundry_forms")
                     .add(laundryData)
                     .addOnSuccessListener(aVoid -> {
@@ -183,19 +203,27 @@ public class LaundryForm extends AppCompatActivity {
             EditText editTextQuantity = itemLayout.findViewById(R.id.textViewItemName);
 
             btnDecrease.setOnClickListener(v -> {
-                int currentQuantity = Integer.parseInt(editTextQuantity.getText().toString());
-                if (currentQuantity > 0) {
-                    int newQuantity = currentQuantity - 1;
-                    editTextQuantity.setText(String.valueOf(newQuantity));
-                    updateItemQuantityInFirestore(uid, itemName, newQuantity, itemLayout);
+                try {
+                    int currentQuantity = Integer.parseInt(editTextQuantity.getText().toString());
+                    if (currentQuantity > 0) {
+                        int newQuantity = currentQuantity - 1;
+                        editTextQuantity.setText(String.valueOf(newQuantity));
+                        updateItemQuantityInFirestore(uid, itemName, newQuantity, itemLayout);
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Invalid quantity", Toast.LENGTH_SHORT).show();
                 }
             });
 
             btnIncrease.setOnClickListener(v -> {
-                int currentQuantity = Integer.parseInt(editTextQuantity.getText().toString());
-                int newQuantity = currentQuantity + 1;
-                editTextQuantity.setText(String.valueOf(newQuantity));
-                updateItemQuantityInFirestore(uid, itemName, newQuantity, itemLayout);
+                try {
+                    int currentQuantity = Integer.parseInt(editTextQuantity.getText().toString());
+                    int newQuantity = currentQuantity + 1;
+                    editTextQuantity.setText(String.valueOf(newQuantity));
+                    updateItemQuantityInFirestore(uid, itemName, newQuantity, itemLayout);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "Invalid quantity", Toast.LENGTH_SHORT).show();
+                }
             });
 
             llInventoryList.addView(itemLayout);
@@ -231,6 +259,10 @@ public class LaundryForm extends AppCompatActivity {
         private String userId;
         private String name;
         private int quantity;
+
+        public Item() {
+            // Firestore requires a no-argument constructor
+        }
 
         public Item(String userId, String name, int quantity) {
             this.userId = userId;

@@ -1,10 +1,12 @@
 package com.example.laundelivery;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LocationFinder extends AppCompatActivity {
 
     ImageButton imgbtnPin1, imgbtnPin2;
+    Button btnGoBack3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,8 @@ public class LocationFinder extends AppCompatActivity {
 
         imgbtnPin1 = (ImageButton) findViewById(R.id.imgbtnPin1);
         imgbtnPin2 = (ImageButton) findViewById(R.id.imgbtnPin2);
+        btnGoBack3 = findViewById(R.id.btnGoBack3);
+        btnGoBack3.setOnClickListener(v -> navigateToMainActivity());
 
         // Set click listener for the first pin
         imgbtnPin1.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +43,13 @@ public class LocationFinder extends AppCompatActivity {
                 showPopupWindow(v, R.layout.popup_window_2); // Assuming you have a second popup layout
             }
         });
+
+    }
+
+    private void navigateToMainActivity() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void showPopupWindow(View view, int layoutResId) {

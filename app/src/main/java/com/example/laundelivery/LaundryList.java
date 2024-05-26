@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,47 +37,59 @@ public class LaundryList extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        loadInventoryList();
-        loadLaundryList();
+        if (currentUser != null) {
+            loadInventoryList();
+            loadLaundryList();
+        } else {
+            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
+            navigateToMainActivity();
+        }
 
         btnGoBack.setOnClickListener(v -> navigateToMainActivity());
     }
 
     private void loadInventoryList() {
-        if (currentUser != null) {
-            String uid = currentUser.getUid();
-            db.collection("users").document(uid).collection("inventory")
-                    .get()
-                    .addOnSuccessListener(queryDocumentSnapshots -> {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String itemName = document.getString("name");
-                            long quantity = document.getLong("quantity");
-                            addItemToList(itemName, (int) quantity);
-                        }
-                    })
-                    .addOnFailureListener(e -> Log.e("Inventory", "Error loading inventory", e));
-        }
+        String uid = currentUser.getUid();
+        db.collection("users").document(uid).collection("inventory")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String itemName = document.getString("name");
+                        long quantity = document.getLong("quantity");
+                        addItemToList(itemName, (int) quantity);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("Inventory", "Error loading inventory", e);
+                    Toast.makeText(LaundryList.this, "Error loading inventory", Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void loadLaundryList() {
-        if (currentUser != null) {
-            String uid = currentUser.getUid();
-            db.collection("users").document(uid).collection("laundry_forms")
-                    .get()
-                    .addOnSuccessListener(queryDocumentSnapshots -> {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            String address = document.getString("address");
-                            String landMark = document.getString("landmark");
-                            String datePickup = document.getString("datePickup");
-                            String timePickup = document.getString("timePickUp");
-                            String detergent = document.getString("detergent");
-                            boolean fabricSoftener = Boolean.TRUE.equals(document.getBoolean("fabricSoftener"));
-                            String service = document.getString("service");
-                            addFormToList(address, landMark, datePickup, timePickup, detergent, String.valueOf(fabricSoftener), service);
-                        }
-                    })
-                    .addOnFailureListener(e -> Log.e("LaundryList", "Error loading laundry forms", e));
-        }
+        String uid = currentUser.getUid();
+        db.collection("users").document(uid).collection("laundry_forms")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String address = document.getString("address");
+                        String landMark = document.getString("landmark");
+                        String datePickup = document.getString("datePickup");
+                        String timePickup = document.getString("timePickUp");
+                        String detergent = document.getString("detergent");
+                        boolean fabricSoftener = Boolean.TRUE.equals(document.getBoolean("fabricSoftener"));
+                        String service = document.getString("service");
+                        Double total = document.getDouble("total");
+
+                        // Check if total is not null
+                        double totalValue = total != null ? total : 0.0;
+
+                        addFormToList(address, landMark, datePickup, timePickup, detergent, String.valueOf(fabricSoftener), service, totalValue);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("LaundryList", "Error loading laundry forms", e);
+                    Toast.makeText(LaundryList.this, "Error loading laundry forms", Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void addItemToList(String itemName, int itemQuantity) {
@@ -99,10 +112,10 @@ public class LaundryList extends AppCompatActivity {
         }
     }
 
-    private void addFormToList(String address, String landMark, String datePickup, String timePickup, String detergent, String fabricSoftener, String service) {
+    private void addFormToList(String address, String landMark, String datePickup, String timePickup, String detergent, String fabricSoftener, String service, double total) {
         LayoutInflater inflater = LayoutInflater.from(this);
         LinearLayout formLayout = (LinearLayout) inflater.inflate(R.layout.laundry_request_layout, FormsList, false);
-
+        String uid = currentUser.getUid();
         TextView textViewAddress = formLayout.findViewById(R.id.textViewAddress);
         TextView textViewLandMark = formLayout.findViewById(R.id.textViewLandMark);
         TextView textViewDatePickup = formLayout.findViewById(R.id.textViewDatePickup);
@@ -110,6 +123,7 @@ public class LaundryList extends AppCompatActivity {
         TextView textViewDetergent = formLayout.findViewById(R.id.textViewDetergent);
         TextView textViewFabricSoftener = formLayout.findViewById(R.id.textViewFabricSoftener);
         TextView textViewService = formLayout.findViewById(R.id.textViewService);
+        TextView textViewTotal = formLayout.findViewById(R.id.textViewTotal);
         Button btnCancel = formLayout.findViewById(R.id.btnCancel);
 
         if (textViewAddress != null && textViewLandMark != null && textViewDatePickup != null && textViewTimePickup != null
@@ -122,8 +136,9 @@ public class LaundryList extends AppCompatActivity {
             textViewDetergent.setText(detergent);
             textViewFabricSoftener.setText(fabricSoftener);
             textViewService.setText(service);
+            textViewTotal.setText(String.valueOf(total));
 
-            btnCancel.setOnClickListener(v -> cancelForm(formLayout));
+            btnCancel.setOnClickListener(v -> cancelForm(uid, formLayout));
 
             FormsList.addView(formLayout);
         } else {
@@ -135,11 +150,21 @@ public class LaundryList extends AppCompatActivity {
         db.collection("users").document(currentUser.getUid()).collection("inventory").document(itemName)
                 .delete()
                 .addOnSuccessListener(aVoid -> llInventoryList.removeView(itemLayout))
-                .addOnFailureListener(e -> Log.e("Inventory", "Error deleting item", e));
+                .addOnFailureListener(e -> {
+                    Log.e("Inventory", "Error deleting item", e);
+                    Toast.makeText(LaundryList.this, "Error deleting item", Toast.LENGTH_SHORT).show();
+                });
     }
 
-    private void cancelForm(LinearLayout formLayout) {
-        FormsList.removeView(formLayout);
+    private void cancelForm(String uid, LinearLayout formLayout) {
+        String formId = formLayout.getTag().toString();
+        db.collection("users").document(uid).collection("laundry_forms").document(formId)
+                .delete()
+                .addOnSuccessListener(aVoid -> FormsList.removeView(formLayout))
+                .addOnFailureListener(e -> {
+                    Log.e("LaundryList", "Error cancelling form", e);
+                    Toast.makeText(LaundryList.this, "Error cancelling form", Toast.LENGTH_SHORT).show();
+                });
     }
 
     private void navigateToMainActivity() {
