@@ -18,4 +18,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.158" />
 
+    <TextView
+        android:id="@+id/txtSlogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launder your Laundry"
+        android:fontFamily="@font/baloo_bhaijaan"
+        android:includeFontPadding="false"
+        android:textColor="#6aafd8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imLogo"
+        android:textSize="22sp"  />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
