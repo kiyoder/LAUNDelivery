@@ -10,4 +10,12 @@
     <color name="_616161">#616161</color>
     <color name="primary">#C195FF</color> <!-- Example primary color -->
     <color name="secondary">#FF3700B3</color> <!-- Example secondary color -->
+    <color name="standard_sky_blue">#AED7F0</color>
+    <color name="light_sky_blue">#86C4EA</color>
+    <color name="deep_sky_blue">#6AAFD8</color>
+    <color name="dodger_blue">#1E90FF</color>
+    <color name="splash_screen_blue">#1c4a86</color>
+    <color name="splash_screen_white">#EFFBFF</color>
+    <color name="splash_screen_grey">#B8CAD2</color>
+
 </resources>
