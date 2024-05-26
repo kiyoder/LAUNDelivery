@@ -146,7 +146,7 @@ public class LaundryForm extends AppCompatActivity {
             } else if (service.equals("Wash + Press")) {
                 totalPrice += 300;
             } else if (service.equals("Dry Cleaning")) {
-                totalPrice += 100;
+                totalPrice += 125;
             }
 
             if (detergent.equals("Premium (+P50)")) {

@@ -136,7 +136,7 @@ public class LaundryList extends AppCompatActivity {
             textViewDetergent.setText(detergent);
             textViewFabricSoftener.setText(fabricSoftener);
             textViewService.setText(service);
-            textViewTotal.setText(String.valueOf(total));
+            textViewTotal.setText(String.valueOf("Php " + total));
 
             btnCancel.setOnClickListener(v -> cancelForm(uid, formLayout));
 
