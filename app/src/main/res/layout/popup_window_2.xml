@@ -14,8 +14,8 @@
         android:fontFamily="@font/baloo_bhaijaan"
         android:includeFontPadding="false"
         android:text="'Saggin Laundry Shop"
+        android:textColor="#effbff"
         android:textColorLink="#EFFBFF"
-        android:textSize="22sp"
-        android:textColor="#effbff" />
+        android:textSize="22sp" />
 
 </RelativeLayout>
