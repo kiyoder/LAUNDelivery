@@ -13,9 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
 
-    ImageButton imgbtnInventory, imgbtnLaundry, imgbtnLogout;
-
-
+    ImageButton imgbtnInventory, imgbtnLaundry, imgbtnLogout, imgbtnLocation;
     TextView textViewEmail;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -35,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         imgbtnInventory = findViewById(R.id.imgbtnOrders);
         imgbtnLaundry = findViewById(R.id.imgbtnLaundry);
         imgbtnLogout = findViewById(R.id.imgbtnLogout);
+        imgbtnLocation = findViewById(R.id.imgbtnLocation);
 
 
 
@@ -69,6 +68,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LaundryForm.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        imgbtnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LocationFinder.class);
                 startActivity(intent);
                 finish();
             }
