@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/user_email"
+        android:fontFamily="@font/baloo_bhaina_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.779"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,9 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="BOOK"
+                android:fontFamily="@font/baloo_bhaijaan"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 android:paddingTop="5dp"/>
         </LinearLayout>
 
@@ -72,9 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ORDERS"
+                android:fontFamily="@font/baloo_bhaijaan"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 android:paddingTop="5dp"/>
 
         </LinearLayout>
@@ -101,9 +102,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="LOCATION"
+                android:fontFamily="@font/baloo_bhaijaan"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 android:paddingTop="5dp"/>
         </LinearLayout>
     </LinearLayout>

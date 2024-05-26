@@ -16,10 +16,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="30sp"
             android:layout_marginEnd="20dp"
-            android:text="Form" />
+            android:text="Form"
+            android:textSize="30sp"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <Button
             android:id="@+id/btnCancel"
@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:backgroundTint="@color/light_sky_blue"
-            android:text="Cancel" />
+            android:text="Cancel"
+            android:fontFamily="@font/baloo_bhaijaan"/>
     </LinearLayout>
 
     <LinearLayout
@@ -42,16 +43,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Address" />
+            android:text="Address"
+            android:fontFamily="@font/baloo_bhaijaan"/>
 
         <TextView
             android:id="@+id/textViewAddress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Example Address" />
+            android:text="Example Address"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,16 +67,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Landmark" />
+            android:text="Landmark"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <TextView
             android:id="@+id/textViewLandMark"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Example Landmark" />
+            android:text="Example Landmark"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,16 +92,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Date Pickup" />
+            android:text="Date Pickup"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <TextView
             android:id="@+id/textViewDatePickup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Example Date" />
+            android:text="Example Date"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -112,16 +116,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Time Pickup" />
+            android:text="Time Pickup"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <TextView
             android:id="@+id/textViewTimePickup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Example Time" />
+            android:text="Example Time"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -136,16 +141,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Detergent Option" />
+            android:text="Detergent Option"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <TextView
             android:id="@+id/textViewDetergent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Example Detergent" />
+            android:text="Example Detergent"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -159,16 +165,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Add Fabric Softener" />
+            android:text="Add Fabric Softener"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <TextView
             android:id="@+id/textViewFabricSoftener"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Yes/No" />
+            android:text="Yes/No"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
     <LinearLayout
@@ -183,16 +190,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginEnd="16dp"
-            android:text="Other Services" />
+            android:text="Other Services"
+            android:fontFamily="@font/baloo_bhaijaan" />
 
         <TextView
             android:id="@+id/textViewService"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Example Service" />
+            android:text="Example Service"
+            android:fontFamily="@font/baloo_bhaina_2" />
     </LinearLayout>
 
 </LinearLayout>

@@ -26,13 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Item Name"
-                android:textStyle="bold" />
+                android:fontFamily="@font/baloo_bhaijaan"/>
 
             <TextView
                 android:id="@+id/textViewItemName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="8" />
+                android:ems="8"
+                android:fontFamily="@font/baloo_bhaina_2"/>
         </LinearLayout>
 
         <LinearLayout
@@ -47,13 +48,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quantity"
-                android:textStyle="bold" />
+                android:fontFamily="@font/baloo_bhaijaan" />
 
             <TextView
                 android:id="@+id/textViewQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="2" />
+                android:ems="2"
+                android:fontFamily="@font/baloo_bhaina_2" />
         </LinearLayout>
 
         <Button
@@ -61,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Remove"
+            android:fontFamily="@font/baloo_bhaijaan"
             android:textColor="@android:color/white"
             android:backgroundTint="@color/light_sky_blue"/>
     </LinearLayout>

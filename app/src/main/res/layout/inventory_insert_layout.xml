@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="item name"
+            android:fontFamily="@font/baloo_bhaijaan"
             android:layout_marginStart="20dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:id="@+id/btnDecrease"
