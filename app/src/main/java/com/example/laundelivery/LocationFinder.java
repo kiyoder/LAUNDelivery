@@ -52,7 +52,7 @@ public class LocationFinder extends AppCompatActivity {
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         // Show the popup window
-        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 300);
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 200);
 
         // Dismiss the popup window when touched
         popupView.setOnTouchListener(new View.OnTouchListener() {
