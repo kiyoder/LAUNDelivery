@@ -90,13 +90,46 @@ public class LaundryForm extends AppCompatActivity {
 
     private void submitLaundryForm() {
         if (currentUser != null) {
+
+            if (txtDatePickup == null || txtDatePickup.getText().toString().trim().isEmpty()) {
+                Toast.makeText(LaundryForm.this, "Please provide pick up date.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (txtAddress == null || txtAddress.getText().toString().trim().isEmpty()) {
+                Toast.makeText(LaundryForm.this, "Please provide your current address.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (txtLandmark == null || txtLandmark.getText().toString().trim().isEmpty()) {
+                Toast.makeText(LaundryForm.this, "Please provide your current landmark.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (radioService == null || radioService.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(LaundryForm.this, "Please choose a service.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (radioDetergent == null || radioDetergent.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(LaundryForm.this, "Please provide your preferred detergent.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (radioTimePickUp == null || radioTimePickUp.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(LaundryForm.this, "Please provide pick up time.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String uid = currentUser.getUid();
             String datePickup = txtDatePickup.getText().toString();
             String address = txtAddress.getText().toString();
             String landmark = txtLandmark.getText().toString();
-            String service = ((RadioButton) findViewById(radioService.getCheckedRadioButtonId())).getText().toString();
-            String detergent = ((RadioButton) findViewById(radioDetergent.getCheckedRadioButtonId())).getText().toString();
-            String timePickUp = ((RadioButton) findViewById(radioTimePickUp.getCheckedRadioButtonId())).getText().toString();
+
+            RadioButton selectedService = findViewById(radioService.getCheckedRadioButtonId());
+            String service = selectedService.getText().toString();
+
+            RadioButton selectedDetergent = findViewById(radioDetergent.getCheckedRadioButtonId());
+            String detergent = selectedDetergent.getText().toString();
+
+            RadioButton selectedTimePickUp = findViewById(radioTimePickUp.getCheckedRadioButtonId());
+            String timePickUp = selectedTimePickUp.getText().toString();
+
             boolean fabricSoftener = switchFabricSoftener.isChecked();
 
             Map<String, Object> laundryData = new HashMap<>();
