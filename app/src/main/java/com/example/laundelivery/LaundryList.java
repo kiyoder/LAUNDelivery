@@ -136,9 +136,9 @@ public class LaundryList extends AppCompatActivity {
             textViewDetergent.setText(detergent);
             textViewFabricSoftener.setText(fabricSoftener);
             textViewService.setText(service);
-            textViewTotal.setText(String.valueOf("Php " + total));
+            textViewTotal.setText(String.valueOf(total));
 
-            btnCancel.setOnClickListener(v -> cancelForm(uid, formLayout));
+            btnCancel.setOnClickListener(v -> cancelForm(formLayout));
 
             FormsList.addView(formLayout);
         } else {
@@ -150,21 +150,11 @@ public class LaundryList extends AppCompatActivity {
         db.collection("users").document(currentUser.getUid()).collection("inventory").document(itemName)
                 .delete()
                 .addOnSuccessListener(aVoid -> llInventoryList.removeView(itemLayout))
-                .addOnFailureListener(e -> {
-                    Log.e("Inventory", "Error deleting item", e);
-                    Toast.makeText(LaundryList.this, "Error deleting item", Toast.LENGTH_SHORT).show();
-                });
+                .addOnFailureListener(e -> Log.e("Inventory", "Error deleting item", e));
     }
 
-    private void cancelForm(String uid, LinearLayout formLayout) {
-        String formId = formLayout.getTag().toString();
-        db.collection("users").document(uid).collection("laundry_forms").document(formId)
-                .delete()
-                .addOnSuccessListener(aVoid -> FormsList.removeView(formLayout))
-                .addOnFailureListener(e -> {
-                    Log.e("LaundryList", "Error cancelling form", e);
-                    Toast.makeText(LaundryList.this, "Error cancelling form", Toast.LENGTH_SHORT).show();
-                });
+    private void cancelForm(LinearLayout formLayout) {
+        FormsList.removeView(formLayout);
     }
 
     private void navigateToMainActivity() {
